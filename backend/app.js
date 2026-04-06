@@ -19,16 +19,16 @@ app.get("/api/board", (req, res) => {
 
 //뷰를 서버에 합침
 const path = require("path");
-const publicPath = path.join(__dirname, "dist");
+const publicPath = path.join(__dirname, "public");
 app.use(express.static(publicPath));
 
 app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "./dist", "index.html"));
+  res.sendFile(path.join(__dirname, "./public", "index.html"));
 });
 
 //서버에서 컴포넌트를 못찾으니 html로 위임함
 //미들웨어 404가 뜨면 html 파일을 호출해서 그 파일안에서 about 찾음
 //대신 네트웨크에서는 about이 404로 뜸
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "./dist", "index.html"));
+  res.status(404).sendFile(path.join(__dirname, "./public", "index.html"));
 });
